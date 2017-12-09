@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-
-  root to: "home#index"
+  root 'home#index'
+ 
   devise_for :users
-  
-  resources :conversations, only: [:create]
-  
+ 
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+  end
 end
